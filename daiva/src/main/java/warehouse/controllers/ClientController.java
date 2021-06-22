@@ -13,10 +13,11 @@ import warehouse.model.Client;
 import warehouse.services.ClientService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@Api(value = "client")
-@RequestMapping(path = "/api/client")
+@Api(value = "clients")
+@RequestMapping(path = "/api/clients")
 public class ClientController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ClientController.class);
@@ -41,6 +42,12 @@ public class ClientController {
     @ApiOperation(value = "Get client", notes = "Returns client")
     public Client getClient(@PathVariable long id){
         return clientService.getClient(id);
+    }
+
+    @GetMapping
+    @ApiOperation(value = "Get all clients", notes = "Returns clients")
+    public List<Client> getClients(){
+        return clientService.getClients();
     }
 
     @DeleteMapping(path = "/{id}")

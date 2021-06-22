@@ -9,6 +9,8 @@ import warehouse.exceptions.ClientDoesNotExistsException;
 import warehouse.model.Client;
 import warehouse.repository.ClientDAO;
 
+import java.util.List;
+
 @Service
 public class ClientService {
 
@@ -39,6 +41,11 @@ public class ClientService {
             throw new ClientDoesNotExistsException("Client does not exists!");
         }
         return clientDAO.getById(id);
+    }
+
+    @Transactional
+    public List<Client> getClients(){
+        return clientDAO.findAll();
     }
 
     @Transactional
